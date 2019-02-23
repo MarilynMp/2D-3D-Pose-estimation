@@ -61,7 +61,7 @@ if( resultDegree>=LeftElbowDegree-10 && resultDegree<=LeftElbowDegree+10){
 	{
 		if(towards=="right")
 		{
-			if(a.x>=c.x)
+			if(a.x>c.x)
 				return 1;
 			else
 				return 0;
@@ -69,7 +69,7 @@ if( resultDegree>=LeftElbowDegree-10 && resultDegree<=LeftElbowDegree+10){
 		}
 		else
 		{
-			if(a.x<c.x)
+			if(a.x<=c.x)
 				return 1;
 			else
 				return 0;
