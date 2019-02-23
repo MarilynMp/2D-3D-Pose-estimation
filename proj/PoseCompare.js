@@ -1,83 +1,83 @@
 var keyPose; //image Pose
 var LeftHipDegree;
 var LeftElbowDegree; 
+var RightHipDegree;
+var RightElbowDegree; 
+var towards;
+var towardss;
 function setKeypoints(pose)
 {
 	keyPose=pose;
-	//console.log(keyPose.keypoints[5].position);
-	//left arm
-	FindAngle_Img();
+	console.log(keyPose);
+	LeftArmAngle();
+	RightArmAngle();
 }
 
-function getKeypoints()
+function getAngle(a,b,c)
 {
-	return keyPose;
-}
-function FindAngle_Img(){
-	
-	//console.log("Image Keypoints");
-	//console.log(keyPose);
-	
-	//left elbow
-var px=keyPose.keypoints[5].position.x;
-var py=keyPose.keypoints[5].position.y;
-	
-var qy=keyPose.keypoints[7].position.y;
-var qx=keyPose.keypoints[7].position.x;
-var rx=keyPose.keypoints[9].position.x;
-var ry=keyPose.keypoints[9].position.y;
-//var {ry,rx}=keyPose.keypoints[9].position;
-console.log(px,py,qx,qy,rx,ry);
-var q12 = Math.sqrt(Math.pow((px - qx),2) + Math.pow((py - qy),2));
-var q13 = Math.sqrt(Math.pow((px - rx),2) + Math.pow((py - ry),2));
-var q23 = Math.sqrt(Math.pow((qx - rx),2) + Math.pow((qy - ry),2));
- LeftElbowDegree = Math.acos(((Math.pow(q23, 2)) + (Math.pow(q12, 2)) - (Math.pow(q13, 2))) / (2 * q23 * q12)) * 180 / Math.PI;
-//console.log("elbowPose",LeftElbowDegree);
-var ax=keyPose.keypoints[7].position.x;
-var ay=keyPose.keypoints[7].position.y;	
-var by=keyPose.keypoints[5].position.y;
-var bx=keyPose.keypoints[5].position.x;
-var cx=keyPose.keypoints[11].position.x;
-var cy=keyPose.keypoints[11].position.y;
-
-var p12 = Math.sqrt(Math.pow((ax - bx),2) + Math.pow((ay - by),2));
-var p13 = Math.sqrt(Math.pow((ax - cx),2) + Math.pow((ay - cy),2));
-var p23 = Math.sqrt(Math.pow((bx - cx),2) + Math.pow((by - cy),2));
-LeftHipDegree = Math.acos(((Math.pow(p23, 2)) + (Math.pow(p12, 2)) - (Math.pow(p13, 2))) / (2 * p23 * p12)) * 180 / Math.PI;
-//console.log("elbowPose",LeftHipDegree);
-
-	
-	
-}
-function compareLeftElbow(a,b,c,d){ //5,7,7,9
 	var ax=a.x;
 	var ay=a.y;
 	var bx=b.x;
 	var by=b.y;
 	var cx=c.x;
 	var cy=c.y;
-	//var dx=d.x;
-	//var dy=d.y;
-	console.log(ax,ay);
-	//write comparing algo over here
+	
 var p12 = Math.sqrt(Math.pow((ax - bx),2) + Math.pow((ay - by),2));
 var p13 = Math.sqrt(Math.pow((ax - cx),2) + Math.pow((ay - cy),2));
 var p23 = Math.sqrt(Math.pow((bx - cx),2) + Math.pow((by - cy),2));
 
 //angle in degrees
 var resultDegree = Math.acos(((Math.pow(p23, 2)) + (Math.pow(p12, 2)) - (Math.pow(p13, 2))) / (2 * p23 * p12)) * 180 / Math.PI;
-console.log("webcamPose",resultDegree);
+return resultDegree;	
+}
+function LeftArmAngle(){
 
+LeftElbowDegree=getAngle(keyPose.keypoints[5].position,keyPose.keypoints[7].position,keyPose.keypoints[9].position);
+LeftHipDegree=getAngle(keyPose.keypoints[7].position,keyPose.keypoints[5].position,keyPose.keypoints[11].position);
+if(keyPose.keypoints[5].position.x> keyPose.keypoints[9].position.x)
+{
+	towards="right";
+	
+}
+else
+{
+	towards="left";
+}
+	
+}
+function compareLeftElbow(a,b,c,d){ //  (5,7,9,11)           5-7,7-9 and 7-5,5-11
+	
+	
+var resultDegree = getAngle(a,b,c);
+//console.log("webcamPose Elbow:",resultDegree);
+//console.log("elbowPose",LeftElbowDegree);
+var resultDegrees = getAngle(b,c,d);
+//console.log("webcamPose:",resultDegrees);
+//console.log(LeftHipDegree);
 if( resultDegree>=LeftElbowDegree-10 && resultDegree<=LeftElbowDegree+10){
 	
-	/*
-	if()
+	
+	if(resultDegrees>=LeftHipDegree-10 && resultDegrees<=LeftHipDegree+10) 
 	{
-		return 1;
+		if(towards=="right")
+		{
+			if(a.x>=c.x)
+				return 1;
+			else
+				return 0;
+			
+		}
+		else
+		{
+			if(a.x<c.x)
+				return 1;
+			else
+				return 0;
+		}
+		
 	}
-	else return 0;
-	*/
-	return 1;
+	else{ return 0;}
+	
 	
 }
 else{
@@ -85,7 +85,71 @@ else{
 }
 
 
-console.log(LeftElbowDegree);
+
 
 }
 
+function compareRightElbow(a,b,c,d){ //  (6,8,10,12)           6-8,8-10 and 8-6,6-12
+	
+	
+var resultDegree = getAngle(a,b,c);
+//console.log("webcamPose Right Elbow:",resultDegree);
+//console.log("RightelbowPose",LeftElbowDegree);
+var resultDegrees = getAngle(b,c,d);
+//console.log("RightwebcamPose:",resultDegrees);
+//console.log(RightHipDegree);
+
+if( resultDegree>=RightElbowDegree-10 && resultDegree<=RightElbowDegree+10){
+	
+	
+	if(resultDegrees>=RightHipDegree-10 && resultDegrees<=RightHipDegree+10) 
+	{
+		if(towardss=="left")
+		{
+			if(a.x<=c.x)
+				return 1;
+			else
+				return 0;
+			
+		}
+		else
+		{
+			if(a.x>c.x)
+				return 1;
+			else
+				return 0;
+		}
+		
+	}
+	else{ return 0;}
+	
+	
+}
+else{
+	return 0;
+}
+
+
+
+
+}
+
+function RightArmAngle(){
+	
+	//console.log("Image Keypoints");
+	//console.log(keyPose);
+	
+	//left elbow
+RightElbowDegree=getAngle(keyPose.keypoints[6].position,keyPose.keypoints[8].position,keyPose.keypoints[10].position);
+RightHipDegree=getAngle(keyPose.keypoints[8].position,keyPose.keypoints[6].position,keyPose.keypoints[12].position);
+if(keyPose.keypoints[6].position.x> keyPose.keypoints[10].position.x)
+{
+	towardss="right";
+	
+}
+else
+{
+	towardss="left";
+}
+	
+}
