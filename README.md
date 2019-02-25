@@ -1,2 +1,3 @@
 # 2D-3D-Pose-estimation
-This project is a part of our Final Year project in which we are using Pose Estimation to detect and Compare real time poses. The project is in process. 
+In this project we aim to compare Real-time poses of users to the poses of selected yoga or dance posture provided in our dataset.
+We aim to make a system which can revolutionize the process of learning dance and yoga poses.
