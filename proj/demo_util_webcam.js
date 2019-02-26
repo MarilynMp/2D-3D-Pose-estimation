@@ -1,22 +1,3 @@
-/**
- * @license
- * Copyright 2018 Google Inc. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licnses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * =============================================================================
- */
-// import * as tf from '@tensorflow/tfjs-core';
-// import * as posenet from '../src';
-
 
 var color = 'aqua';
 var lineWidth = 5;
@@ -155,45 +136,7 @@ function drawKeypointss(keypoints, minConfidence, ctx, scale = 1) {
   }
 }
 
-/**
- * Draw the bounding box of a pose. For example, for a whole person standing
- * in an image, the bounding box will begin at the nose and extend to one of
- * ankles
- */
-function drawBoundingBoxs(keypoints, ctx) {
-  var boundingBox = posenet.getBoundingBox(keypoints);
 
-  ctx.rect(boundingBox.minX, boundingBox.minY,
-    boundingBox.maxX - boundingBox.minX, boundingBox.maxY - boundingBox.minY);
-
-  ctx.stroke();
-}
-
-/**
- * Converts an arary of pixel data into an ImageData object
- */
-async function renderToCanvass(a, ctx) {
-  var [height, width] = a.shape;
-  var imageData = new ImageData(width, height);
-
-  var data = await a.data();
-
-  for (let i = 0; i < height * width; ++i) {
-    var j = i * 4;
-    var k = i * 3;
-
-    imageData.data[j + 0] = data[k + 0];
-    imageData.data[j + 1] = data[k + 1];
-    imageData.data[j + 2] = data[k + 2];
-    imageData.data[j + 3] = 255;
-  }
-
-  ctx.putImageData(imageData, 0, 0);
-}
-
-/**
- * Draw an image on a canvas
- */
 function renderImageToCanvass(image, size, canvas) {
   canvas.width = size[0];
   canvas.height = size[1];
@@ -202,23 +145,7 @@ function renderImageToCanvass(image, size, canvas) {
   ctx.drawImage(image, 0, 0);
 }
 
-/**
- * Draw heatmap values, one of the model outputs, on to the canvas
- * Read our blog post for a description of PoseNet's heatmap outputs
- * https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5
- */
-function drawHeatMapValuess(heatMapValues, outputStride, canvas) {
-  var ctx = canvas.getContext('2d');
-  var radius = 5;
-  var scaledValues = heatMapValues.mul(tf.scalar(outputStride, 'int32'));
 
-  drawPointss(ctx, scaledValues, radius, color);
-}
-
-/**
- * Used by the drawHeatMapValues method to draw heatmap points on to
- * the canvas
- */
 function drawPointss(ctx, points, radius, color) {
   var data = points.buffer().values;
 
@@ -235,24 +162,6 @@ function drawPointss(ctx, points, radius, color) {
   }
 }
 
-/**
- * Draw offset vector values, one of the model outputs, on to the canvas
- * Read our blog post for a description of PoseNet's offset vector outputs
- * https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5
- */
-function drawOffsetVectorss(
-  heatMapValues, offsets, outputStride, scale = 1, ctx) {
-  var offsetPoints = posenet.singlePose.getOffsetPoints(
-    heatMapValues, outputStride, offsets);
-
-  var heatmapData = heatMapValues.buffer().values;
-  var offsetPointsData = offsetPoints.buffer().values;
-
-  for (let i = 0; i < heatmapData.length; i += 2) {
-    var heatmapY = heatmapData[i] * outputStride;
-    var heatmapX = heatmapData[i + 1] * outputStride;
-    var offsetPointY = offsetPointsData[i];
-    var offsetPointX = offsetPointsData[i + 1];
 
     drawSegments([heatmapY, heatmapX], [offsetPointY, offsetPointX],
       color, scale, ctx);
