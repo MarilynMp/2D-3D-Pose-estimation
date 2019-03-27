@@ -57,6 +57,31 @@ function drawSkeletons(keypoints, minConfidence, ctx, scale = 1) {
 	else{
 		colorR='black';
 	}
+	
+	
+	
+	/**************************modified*************/
+	
+	if(compareLeftLeg(keypoints[11].position,keypoints[13].position,keypoints[15].position,keypoints[12].position)==1){
+		colorsLL='green';
+		
+	}
+	else{
+		colorsLL='black';
+	}
+	
+	if(compareRightLeg(keypoints[12].position,keypoints[14].position,keypoints[16].position,keypoints[11].position)==1){
+		colorsRL='green';
+		
+	}
+	else{
+		colorsRL='black';
+	}
+	
+	
+	
+	/***************************end**************/
+	
 if(keypoints[5].score >= minConfidence && keypoints[7].score >= minConfidence){ 
 		//left arm
 drawSegments(toTuple(keypoints[5].position),
@@ -88,12 +113,12 @@ drawSegments(toTuple(keypoints[8].position),
 if(keypoints[12].score >= minConfidence && keypoints[14].score >= minConfidence){ 
 		
 drawSegments(toTuple(keypoints[12].position),
-      toTuple(keypoints[14].position), color, scale, ctx);
+      toTuple(keypoints[14].position), colorsRL, scale, ctx);
 }
 if(keypoints[14].score >= minConfidence && keypoints[16].score >= minConfidence){ 
 		  
 drawSegments(toTuple(keypoints[14].position),
-      toTuple(keypoints[16].position), color, scale, ctx);
+      toTuple(keypoints[16].position), colorsRL, scale, ctx);
 }  
 //right knee ends
 
@@ -101,12 +126,12 @@ drawSegments(toTuple(keypoints[14].position),
 if(keypoints[11].score >= minConfidence && keypoints[13].score >= minConfidence){ 
 		
 drawSegments(toTuple(keypoints[11].position),
-      toTuple(keypoints[13].position), color, scale, ctx);
+      toTuple(keypoints[13].position), colorsLL, scale, ctx);
 }
 if(keypoints[13].score >= minConfidence && keypoints[15].score >= minConfidence){ 
 			  
 drawSegments(toTuple(keypoints[13].position),
-      toTuple(keypoints[15].position), color, scale, ctx);
+      toTuple(keypoints[15].position), colorsLL, scale, ctx);
 
 }
 
