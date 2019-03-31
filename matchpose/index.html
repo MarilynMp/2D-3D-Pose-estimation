@@ -6,7 +6,8 @@
 <title>Match Pose</title>
 <meta name="description" content="">
 <meta name="author" content="">
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="script_form_ele.js"></script>
 
 
 <style>
@@ -88,7 +89,7 @@
         <div class="row">
           <div class="intro-text">
             <h1>Match Pose</h1>
-            <p>Made By<br> Pradnya Borkar </br><br> Marilyn Mathew</br></br> Mrunal Kapure</br> </p>
+            <p>Made By<br> Pradnya Borkar <br> Marilyn Mathew<br> Mrunal Kapure</p>
           </div>
         </div>
       </div>
@@ -145,10 +146,11 @@
 	<div class="mySlides" width="1000" height="500" >
 	<div class="row" width="1000">
 	<div class="column" width="1000">
-			<img  src="img/pose_2.jpg" width="500" height="300" >
+			<img  src="img/danceBall.jpg" width="500" height="300" >
 	</div>
 	<div class="column" width="1000">
 			<p style="font-size:25px;"><font  color="black"><br><b>WHY WORRY?</b></br> <br> WE GOT YOU COVERED </br> <br> USE<b> MATCH POSE </b></br><br></font></p>
+		
 			<a href="gallery.php" class="btn-custom1">Get Started!!!</a>
 		</div>
 	</div>
@@ -279,17 +281,17 @@ function carousel() {
       <h3>Send us a message</h3>
     </div>
     <div class="col-md-8 col-md-offset-2">
-      <form name="sentMessage" id="contactForm" novalidate>
+   <!--<form name="sentMessage" id="contactForm" novalidate >
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" id="name" class="form-control" placeholder="Name" required="required">
+              <input type="text" name="name" id="name" class="form-control" placeholder="Name" required="required">
               <p class="help-block text-danger"></p>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="email" id="email" class="form-control" placeholder="Email" required="required">
+              <input type="email" name="email" id="email" class="form-control" placeholder="Email" required="required">
               <p class="help-block text-danger"></p>
             </div>
           </div>
@@ -299,9 +301,36 @@ function carousel() {
           <p class="help-block text-danger"></p>
         </div>
         <div id="success"></div>
-        <button type="submit" class="btn btn-custom btn-lg">Send Message</button>
+        <button id="submit" onclick="myFunction()" type="button" class="btn btn-custom btn-lg">Send Message</button>
 		
       </form>
+	  -->
+	  <form  name="sentMessage" id="contactForm">
+<div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+<input id="name" type="text" class="form-control" placeholder="Name" required="required">
+<p class="help-block text-danger"></p>
+</div>
+          </div>
+		  <div class="col-md-6">
+            <div class="form-group">
+
+<input id="email" type="text" class="form-control" placeholder="Email" required="required">
+<p class="help-block text-danger"></p>
+</div>
+          </div>
+        </div>
+		<div class="form-group">
+          <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
+          <p class="help-block text-danger"></p>
+        </div>
+		<div id="success"></div>
+
+
+<input id="submit" onclick="myFunction()" type="button" class="btn btn-custom btn-lg" value="Send Message">
+
+</form>
     </div>
   </div>
 </div>
