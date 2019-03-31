@@ -20,6 +20,55 @@
         display: none;
       }
     }
+	#output{
+	position: absolute;
+	
+	}
+	#LeftArm{
+	position:relative;
+	left:10px;
+	top:20px;
+	float:right;
+	border: 3px solid green;
+	background-color: yellow;
+	}
+	#RightArm{
+	position:relative;
+	left:317px;
+	top:75px;
+	float:right;
+	border: 3px solid green;
+	background-color: yellow;
+	}
+	#LeftLeg{
+	position:relative;
+	left:624px;
+	top:131px;
+	float:right;
+	border: 3px solid green;
+	background-color: yellow;
+	
+	}
+	#RightLeg{
+	position:relative;
+	left:931px;
+	top:187px;
+	float:right;
+	border: 3px solid green;
+	background-color: yellow;
+	
+	}
+	#cat1{
+	position :relative;
+	left:720px;
+	}
+	#poster{
+	position :relative;
+	left:20px;
+	top:720px;
+	float: bottom;
+	
+	}
     </style>
 	
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,18 +89,17 @@
 		display:none
         ">
         </video>
-        <canvas id="output" />
+        <canvas id="output"/>
+		
     </div>
-	<div>
-	
-		<canvas id="AccOut" style="display:none"></canvas>
-		</div>
-	
-	
-
-	<img id='cat' src='' ><!--style="display:none"-->
+	<canvas id="LeftArm" width="300" height="50"></canvas>
+	<canvas id="RightArm" width="300"height="50"></canvas>
+	<canvas id="LeftLeg" width="300"height="50"></canvas>
+	<canvas id="RightLeg" width="300"height="50"></canvas>
+	<img id='cat1' src=''height="300" width="250" >
+	<img id='cat' style="display:none">
 	<br>
-	<canvas id="poster" height="1000" width="1000"></canvas>
+	<canvas id="poster" height="500" width="500"></canvas>
 	
 	
 
@@ -60,13 +108,12 @@
     <script src="https://unpkg.com/@tensorflow/tfjs@0.15.0"></script>
     <script src="https://unpkg.com/@tensorflow-models/posenet@0.2.3"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="PoseCompare.js"></script>
+    <script src="PoseCompare_mod.js"></script>
 <script src="demo_util_webcam.js"></script>
 	
     <script src="stats.js"></script>
     <script src="camera.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/dat.gui@0.7.2/build/dat.gui.js"></script>
     
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     
@@ -78,7 +125,7 @@
 function start() {
   var img=localStorage.imageSrc;
   document.getElementById('cat').src = img;
-
+  document.getElementById('cat1').src = img;
 }
 </script>
 </body>

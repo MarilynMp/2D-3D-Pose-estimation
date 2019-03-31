@@ -76,14 +76,19 @@ var resultDegree = getAngle(a,b,c);
 //console.log("webcamPose Elbow:",resultDegree);
 //console.log("elbowPose",LeftElbowDegree);
 var resultDegrees = getAngle(b,a,d);
-//console.log("webcamPose:",resultDegrees);
-//console.log(LeftHipDegree);
-//var canvas = document.getElementById('output');
-  //var ctx = canvas.getContext('2d');
-  //"Right Elbow->"+"Target:"+RightElbowDegree+  "Right Hip->"+"Target:"+RightHipDegree+
-  //ctx.fillText("Left Elbow->"+"Target:"+LeftElbowDegree+"Actual:"+resultDegree, 50,100 );
-  //ctx.fillText("Left Hip->"+"Target:"+LeftHipDegree+"Actual:"+resultDegrees, 50,150 );
-  //ctx.font = "15px Verdana black";
+
+var canvas = document.getElementById('LeftLeg');
+ var ctx = canvas.getContext('2d');
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ ctx.restore();
+ ctx.font = "15px Verdana black";
+ ctx.fillText("Left Knee-> "+"Target:"+Math.round(LeftKneeDegree)+" Actual:"+Math.round(resultDegree), 10,10 );
+ ctx.fillText("Left Hip-> "+"Target:"+Math.round(LeftWaistDegree)+" Actual:"+Math.round(resultDegrees), 10,25 );
+ 
+
+
+
+
 if( resultDegree>=LeftKneeDegree-10 && resultDegree<=LeftKneeDegree+10){
 	
 	
@@ -127,14 +132,19 @@ var resultDegree = getAngle(a,b,c);
 //console.log("webcamPose Elbow:",resultDegree);
 //console.log("elbowPose",LeftElbowDegree);
 var resultDegrees = getAngle(b,a,d);
-//console.log("webcamPose:",resultDegrees);
-//console.log(LeftHipDegree);
-//var canvas = document.getElementById('output');
-  //var ctx = canvas.getContext('2d');
-  //"Right Elbow->"+"Target:"+RightElbowDegree+  "Right Hip->"+"Target:"+RightHipDegree+
-  //ctx.fillText("Left Elbow->"+"Target:"+LeftElbowDegree+"Actual:"+resultDegree, 50,100 );
-  //ctx.fillText("Left Hip->"+"Target:"+LeftHipDegree+"Actual:"+resultDegrees, 50,150 );
-  //ctx.font = "15px Verdana black";
+
+var canvas = document.getElementById('RightLeg');
+ var ctx = canvas.getContext('2d');
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ ctx.restore();
+ ctx.font = "15px Verdana black";
+ ctx.fillText("Right Knee-> "+"Target:"+Math.round(RightKneeDegree)+" Actual:"+Math.round(resultDegree), 10,10 );
+ ctx.fillText("Right Hip-> "+"Target:"+Math.round(RightWaistDegree)+" Actual:"+Math.round(resultDegrees), 10,25 );
+ 
+
+
+
+
 if( resultDegree>=RightKneeDegree-10 && resultDegree<=RightKneeDegree+10){
 	
 	
@@ -200,12 +210,14 @@ var resultDegree = getAngle(a,b,c);
 var resultDegrees = getAngle(b,a,d);
 //console.log("webcamPose:",resultDegrees);
 //console.log(LeftHipDegree);
-//var canvas = document.getElementById('output');
-  //var ctx = canvas.getContext('2d');
-  //"Right Elbow->"+"Target:"+RightElbowDegree+  "Right Hip->"+"Target:"+RightHipDegree+
-  //ctx.fillText("Left Elbow->"+"Target:"+LeftElbowDegree+"Actual:"+resultDegree, 50,100 );
-  //ctx.fillText("Left Hip->"+"Target:"+LeftHipDegree+"Actual:"+resultDegrees, 50,150 );
-  //ctx.font = "15px Verdana black";
+var canvas = document.getElementById('LeftArm');
+ var ctx = canvas.getContext('2d');
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ ctx.restore();
+ ctx.font = "15px Verdana black";
+ ctx.fillText("Left Elbow-> "+"Target:"+Math.round(LeftElbowDegree)+" Actual:"+Math.round(resultDegree), 10,10 );
+ ctx.fillText("Left Shoulder-> "+"Target:"+Math.round(LeftHipDegree)+" Actual:"+Math.round(resultDegrees), 10,25 );
+ 
 if( resultDegree>=LeftElbowDegree-10 && resultDegree<=LeftElbowDegree+10){
 	
 	
@@ -248,14 +260,14 @@ var resultDegree = getAngle(a,b,c);
 //console.log("webcamPose Right Elbow:",resultDegree);
 //console.log("RightelbowPose",LeftElbowDegree);
 var resultDegrees = getAngle(b,a,d);
-//console.log("RightwebcamPose:",resultDegrees);
-//console.log(RightHipDegree);
-/*var canvas = document.getElementById('output');
-  var ctx = canvas.getContext('2d');
-  //"Right Elbow->"+"Target:"+RightElbowDegree+  "Right Hip->"+"Target:"+RightHipDegree+
-  ctx.fillText("Actual:"+resultDegree, 50,100 );
-  ctx.fillText("Actual:"+resultDegrees, 50,150 );
-  ctx.font = "20px Verdana black";*/
+var canvas = document.getElementById('RightArm');
+ var ctx = canvas.getContext('2d');
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ ctx.restore();
+ ctx.font = "15px Verdana black";
+ ctx.fillText("Right Elbow-> "+"Target:"+Math.round(RightElbowDegree)+" Actual:"+Math.round(resultDegree), 10,10 );
+ ctx.fillText("Right Shoulder-> "+"Target:"+Math.round(RightHipDegree)+" Actual:"+Math.round(resultDegrees), 10,25 );
+ 
 if( resultDegree>=RightElbowDegree-10 && resultDegree<=RightElbowDegree+10){
 	
 	

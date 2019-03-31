@@ -19,7 +19,7 @@
 // import * as posenet from '../src';
 
 // import { drawKeypoints, drawSkeleton } from './demo_util';
-var maxVideoSize = 700;//513;
+var maxVideoSize = 513;//513;
 var canvasSize = 700;
 var stats = new Stats();
 var Wpose;
@@ -83,7 +83,7 @@ async function loadVideo() {
 var guiState = {
   algorithm: 'single-pose',
   input: {
-    mobileNetArchitecture: isMobile() ? '0.50' : '0.75',
+    mobileNetArchitecture: isMobile() ? '0.75' : '0.5',
     outputStride: 16,
     imageScaleFactor: 0.5,
   },
@@ -202,7 +202,7 @@ function detectPoseInRealTime(video, net) {
   var flipHorizontal = true; // since images are being fed from a webcam
 
   canvas.width = canvasSize;
-  canvas.height = canvasSize;
+  canvas.height = maxVideoSize;
 
   async function poseDetectionFrame() {
     if (guiState.changeToArchitecture) {
@@ -295,7 +295,7 @@ async function bindPage() {
 
   document.getElementById('loading').style.display = 'none';
   document.getElementById('main').style.display = 'block';
-	document.getElementById('AccOut').style.display = 'block';
+
   let video;
 
   try {
