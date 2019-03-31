@@ -3,31 +3,36 @@
 <head>
 <link rel="stylesheet" href="swc.css">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="swc.css">
 <title>Gallery from Folder Demo</title>
 <style type="text/css">
 
 li{
     list-style-type:none;
-    margin-right:10px;
-    margin-bottom:10px;
+    margin-right:50px;
+    margin-bottom:30px;
     float:left;
-	
+	box-shadow: 10px 10px 5px grey;
 }
 
 
 </style></head>
 
-<body>
-
+<body bgcolor="	black">
+<div>
+<div>
+<center><h1 style="color: white ; font-family: Arial Black">IMAGE GALLERY</h1></center>
 <div id="boxes">
 <div style="top: 50%; left: 50%; display: none;" id="dialog" class="window"> 
 <div id="san">
 <a href="#" class="close agree"><img src="close-icon.png" width="25" style="float:right; margin-right: -25px; margin-top: -20px;"></a>
-<img src="ins.jpeg" width="450">
+<img src="ins2.JPG" width="450">
 </div>
 </div>
 <div style="width: 2478px; font-size: 32pt; color:white; height: 1202px; display: none; opacity: 0.4;" id="mask"></div>
 </div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script> 
+<script src="swc.js"></script>
 
 
 
@@ -40,7 +45,7 @@ foreach($images as $image) {?>
 
 
 
-    <li><button onClick="selectImage('<?php echo($image) ?>')"><img src='<?php echo($image)?>'  width="300" height="300" /><br /></button></li>
+    <li><button onClick="selectImage('<?php echo($image) ?>')"><img src='<?php echo($image)?>'  width="350" height="350" /><br /></button></li>
 <?php
         }   
 
